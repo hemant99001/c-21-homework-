@@ -1,52 +1,59 @@
-var thickness,wall;
-
-var bullet,speed,weight;
+var bullet,wall;
+var thickness,speed,weight;
 
 function setup() {
-  createCanvas(1600, 400);
+  createCanvas(1600,400);
+bullet = createSprite(500,200,50,50);
+wall = createSprite(1200,200,60,100);
 
-speed=random(223,231)
-weight=random(30,52)
-thickness=random(22,83)
+bullet.velocityX = 5;
 
-  bullet=createSprite(50,200,50,50);
+speed=random(223,321);
+weight=random(25,30);
 
+  
+ 
+ 
+  thickness=random(22,83);
  
 
-  bullet.velocityX = speed;
-
-  wall=createSprite(1200,200,thickness,height/2);
-  wall.shapeColor=color(80,90,80)
 }
 
-function draw()  {
-  background(wite);
+function draw() {
+  background("black");
 
-  if(hasCollided(bullet , wall))  {
-    bullet.velocityX=0;
-     var damage=0.5 * bulletweight * bulletspeed * bulletspeed/(thickness * thickness * thickness)
-    if (damage>10) 
-    {
-      wall.shapeColor="red";
-    }
 
-    if (deformation<10) 
-    {
-      wall.shapeColor="green";
-    }
+  if(hascollided(bullet,wall))
+  {
+    bullet.velocityX=speed;
+    var damage=0.5 * weight * speed*speed/(thickness *thickness *thickness);
 
+
+    if(damage>10)
+     {
+       wall.shapeColor=color(255,0,0);
+
+     }
+
+     if(damage<10)
+     {
+       wall.shapeColor=color(0,255,0);
+     }
   }
 
+
+  
   drawSprites();
+  
 }
 
-
-function hasCollided(bullet, wall)
-{ bulletRightEdge = bullet.x + bullet.width;
-  walleftEdge=wall.x;
+function hascollided(bulletRightEdge,wallLeftEdge)
+{
+  
   if (bulletRightEdge>=wallLeftEdge)
   {
-    return true
-  }
-  return false;
+    return true;
+  } 
+  return false; 
+
 }
